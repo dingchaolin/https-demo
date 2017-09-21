@@ -1,0 +1,23 @@
+{
+  "name": "libo-demo",
+  "version": "1.0.0",
+  "description": "- 打开我的电脑\r - 输入 %LocalAppData%\\Atlassian\\SourceTree\\\r - 创建文件 accounts.json\r - 写入代码\r ```javascript\r [\r   {\r     \"$id\": \"1\",\r     \"$type\": \"SourceTree.Api.Host.Identity.Model.IdentityAccount, SourceTree.Api.Host.Identity\",\r     \"Authenticate\": true,\r     \"HostInstance\": {\r       \"$id\": \"2\",\r       \"$type\": \"SourceTree.Host.Atlassianaccount.AtlassianAccountInstance, SourceTree.Host.AtlassianAccount\",\r       \"Host\": {\r         \"$id\": \"3\",\r         \"$type\": \"SourceTree.Host.Atlassianaccount.AtlassianAccountHost, SourceTree.Host.AtlassianAccount\",\r         \"Id\": \"atlassian account\"\r       },\r       \"BaseUrl\": \"https://id.atlassian.com/\"\r     },\r     \"Credentials\": {\r       \"$id\": \"4\",\r       \"$type\": \"SourceTree.Model.BasicAuthCredentials, SourceTree.Api.Account\",\r       \"Username\": \"\",\r       \"Email\": null\r     },\r     \"IsDefault\": false\r   }\r ]",
+  "main": "test.js",
+  "dependencies": {
+    "express": "^4.15.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dingchaolin/libo-demo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dingchaolin/libo-demo/issues"
+  },
+  "homepage": "https://github.com/dingchaolin/libo-demo#readme"
+}
