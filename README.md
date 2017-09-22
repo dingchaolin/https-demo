@@ -33,3 +33,58 @@
 ]
 
 ```
+
+## openssl 手动创建证书
+- 在git中就可以
+
+## 生成私钥key文件
+- openssl genrsa 1024 > ./private.pem
+
+## 通过私钥文件生成CSR证书签名
+- openssl req -new -key ./private.pem -out csr.pem
+- 这个地方还要输入一些配置信息 类似 npm init
+
+## 通过私钥文件和CSR证书签名生成证书文件
+- openssl x509 -req -days 365 -in csr.pem -signkey ./private.pem -out ./file.crt
+
+## 生成了3个文件
+- private.pem: 私钥
+- csr.pem: CSR证书签名
+- file.crt: 证书文件
+
+## 示例代码
+```javascript
+var app = require('express')();
+var fs = require('fs');
+var http = require('http');
+var https = require('https');
+var privateKey  = fs.readFileSync('/path/to/private.pem', 'utf8');
+var certificate = fs.readFileSync('/path/to/file.crt', 'utf8');
+var credentials = {key: privateKey, cert: certificate};
+
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
+var PORT = 18080;
+var SSLPORT = 18081;
+
+httpServer.listen(PORT, function() {
+    console.log('HTTP Server is running on: http://localhost:%s', PORT);
+});
+httpsServer.listen(SSLPORT, function() {
+    console.log('HTTPS Server is running on: https://localhost:%s', SSLPORT);
+});
+
+// Welcome
+app.get('/', function(req, res) {
+    if(req.protocol === 'https') {
+        res.status(200).send('Welcome to Safety Land!');
+    }
+    else {
+        res.status(200).send('Welcome!');
+    }
+});
+
+```
+
+## 备注
+- 由于我们证书是自己创建的，没有经过第三方机构的验证，所以会出现警告的提示。
